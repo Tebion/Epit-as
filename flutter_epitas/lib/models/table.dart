@@ -1,17 +1,18 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter_epitas/models/player.dart';
 
-class Tables {
+class Table {
   final String id;
   final String title;
-  final int total_nb_place;
+  final int totalNbPlace;
+  List<Player> players = List.empty(growable: true); //DOUBT
   int place;
-  bool is_full;
+  bool isFull;
 
-  Tables({
+  Table({
     required this.id,
     required this.title,
-    required this.total_nb_place,
+    required this.totalNbPlace,
     this.place = 0,
-    this.is_full = false,
+    this.isFull = false,
   });
 }
