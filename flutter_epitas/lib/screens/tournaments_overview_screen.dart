@@ -1,45 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_epitas/models/blind.dart';
 import 'package:flutter_epitas/models/tournament.dart';
-import 'package:flutter_epitas/tools/constant.dart';
-import 'package:flutter_epitas/tools/responsive.dart';
-import 'package:flutter_epitas/widget/tournament_item.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_epitas/providers/tournaments_provider.dart';
+import 'package:flutter_epitas/widget/tournament_grid.dart';
 
 class TournamentsOverview extends StatelessWidget {
-  /*const*/ TournamentsOverview({super.key});
-  // TODO : Fix this const shit
-
-  // TODO Add providers etc...
-  final List<Tournament> tmp = [
-    Tournament(id: "t1", title: "Giant KO"),
-    Tournament(id: "t2", title: "180 Max"),
-    Tournament(id: "t3", title: "Mystery KO"),
-    Tournament(id: "t4", title: "Highroller"),
-    Tournament(id: "t5", title: "MonsterStack"),
-    Tournament(id: "t6", title: "Kill the fish"),
-  ];
+  const TournamentsOverview({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final tournamentsData = Provider.of<TournamentsProvider>(context);
+    List<Tournament> tournaments = tournamentsData.tournaments;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Tournois"),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                Tournament newTournament = Tournament(
+                    id: "t + ${tournaments.length}",
+                    title: "Event #${tournaments.length}");
+                newTournament.blinds = [
+                  Blind(
+                      id: "1",
+                      level: 1,
+                      timer: const Duration(minutes: 15, seconds: 00),
+                      smallBlind: "5",
+                      bigBlind: "10"),
+                ];
+                tournamentsData.addTournament(newTournament);
+              },
+              icon: const Icon(Icons.add_box),
+            ),
+          ],
         ),
-        body: GridView.builder(
-          padding: const EdgeInsets.all(normalPadding),
-          itemCount: tmp.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  !Responsive.isWindows() || Responsive.isSmallSc(context)
-                      ? 1
-                      : 2,
-              childAspectRatio: 3 / 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10),
-          itemBuilder: (context, i) => TournamentItem(
-            tournament: tmp[i],
-          ),
-        ),
+        body: tournaments.isEmpty
+            ? const Center(
+                child: Text("No Tournament for the moment"),
+              )
+            : const TournamentsGrid(),
       ),
     );
   }

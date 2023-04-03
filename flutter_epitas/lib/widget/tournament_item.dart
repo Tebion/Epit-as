@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_epitas/models/tournament.dart';
 import 'package:flutter_epitas/screens/tournament_screen.dart';
+import 'package:flutter_epitas/tools/color_palette.dart';
 import 'package:flutter_epitas/tools/constant.dart';
 
 class TournamentItem extends StatelessWidget {
@@ -25,7 +26,7 @@ class TournamentItem extends StatelessWidget {
         padding: const EdgeInsets.all(normalPadding),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [Colors.red, Colors.black],
+            colors: [Palette.primarySwatch, Colors.black],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
