@@ -20,8 +20,8 @@ const VALUES = [
     "2"
 ]
 
-
+const order = "23456789TJQKA"
 
 module.exports = {
-    VALUES, SUITS
+    VALUES, SUITS, order
 }

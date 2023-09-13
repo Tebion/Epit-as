@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Tebion/Epit-as/issues"
   },
-  "homepage": "https://github.com/Tebion/Epit-as#readme"
+  "homepage": "https://github.com/Tebion/Epit-as#readme",
+  "dependencies": {
+    "pokersolver": "^2.1.4"
+  }
 }

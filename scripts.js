@@ -1,4 +1,6 @@
 const { deck, player, dealer, board } = require("./objects")
+const { order } = require("./data")
+
 
 function shuffleDeck(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -22,9 +24,11 @@ function river(arr) {
     board.cards = board.cards.concat(arr.splice(0, 2))
 }
 
+
+
 module.exports = {
     shuffleDeck,
     deal,
     flop,
-    river
+    river,
 }

@@ -9,7 +9,8 @@ let deck = {
 }
 
 let player = {
-    hand: []
+    hand: [],
+    stacks: 0
 }
 
 let dealer = {
@@ -20,6 +21,14 @@ let board = {
     cards: []
 }
 
+let bet = {
+    ante: 0,
+    blind: 0,
+    trips: 0,
+    jackpot: true,
+    play: 0
+}
+
 module.exports = {
-    deck, player, dealer, board
+    deck, player, dealer, board, bet
 }
